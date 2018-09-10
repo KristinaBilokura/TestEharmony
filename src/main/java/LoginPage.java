@@ -18,7 +18,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public LoginPage login(String email ,String password) {
-        click(logInButton);
+        clickJs(logInButton);
         sendKeysClickable(loginInput, email);
         sendKeysClickable(passwordInput, password);
         click(submitButton);

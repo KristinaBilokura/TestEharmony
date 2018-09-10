@@ -1,3 +1,5 @@
+import io.appium.java_client.TouchAction;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -39,6 +41,18 @@ public class AbstractPage extends DriverObject {
         waitUntilBeVisible(webElement);
         actions.moveToElement(webElement).perform();
         waitUntilBeClickable(webElement).click();
+    }
+
+    protected void clickTouch(WebElement webElement) {
+        waitUntilBeVisible(webElement);
+        TouchAction action = new TouchAction(getDriver());
+        action.tap(webElement).perform();
+    }
+
+    protected void clickJs(WebElement webElement) {
+        waitUntilBeVisible(webElement);
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript("arguments[0].click();", webElement);
     }
 
     public void getPage(final String url) {
